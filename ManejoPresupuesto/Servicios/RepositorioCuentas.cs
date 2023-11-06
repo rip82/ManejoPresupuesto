@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using ManejoPresupuesto.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 
 namespace ManejoPresupuesto.Servicios
@@ -63,6 +64,10 @@ namespace ManejoPresupuesto.Servicios
                                         Descripcion = @Descripcion,
                                         TipoCuentaId = @TipoCuentaId
                                         WHERE Id = @Id;", cuenta);
+        }
+        public async Task Borrar(int id) {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync("DELETE Cuentas WHERE Id = @Id", new { id });
         }
     }
 }
