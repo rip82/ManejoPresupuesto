@@ -6,7 +6,7 @@ namespace ManejoPresupuesto.Servicios
 {
     public interface IRepositorioCategorias
     {
-        Task CrearCategoria(Categoria categoria);
+        Task Crear(Categoria categoria);
     }
     public class RepositorioCategorias: IRepositorioCategorias
     {
@@ -16,7 +16,7 @@ namespace ManejoPresupuesto.Servicios
             connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task CrearCategoria(Categoria categoria)
+        public async Task Crear(Categoria categoria)
         {
             using var connection = new SqlConnection(connectionString);
             var id = await connection.QuerySingleAsync<int>(@"
